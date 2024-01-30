@@ -10,84 +10,38 @@
 </head>
 
 <body>
-    <!DOCTYPE html>
-    <html lang="da">
+    <h1>Gæt et tal mellem 1 og 100</h1>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                text-align: center;
-                margin-top: 50px;
+    <input type="number" id="guess" max="100" placeholder="Gæt et tal">
+    <button onclick="checkGuess()">Gæt!</button>
+    <div id="celebration">
+        <img src="fejre.gif" alt="Festlighed">
+    </div>
+    <div id="result"></div>
+
+
+
+    <script>
+        // Generer et tilfældigt tal mellem 1 og 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        function checkGuess() {
+            // Hent brugerens gæt
+            const userGuess = parseInt(document.querySelector('#guess').value);
+
+            // Tjek om gættet er korrekt
+            if (userGuess === randomNumber) {
+                document.querySelector('#result').innerHTML = 'Tillykke! Du har gættet rigtigt!';
+                document.querySelector('#celebration').style.display = 'block';
+            } else if (userGuess < randomNumber) {
+                document.querySelector('#result').innerHTML = 'Forkert! Tallet er for lavt.';
+            } else {
+                document.querySelector('#result').innerHTML = 'Forkert! Tallet er for højt.';
             }
+        }
+    </script>
 
-            #result {
-                margin-top: 20px;
-            }
 
-            #celebration {
-                display: none;
-            }
-
-            @keyframes celebrate {
-                0% {
-                    transform: scale(1);
-                }
-
-                50% {
-                    transform: scale(1.1);
-                }
-
-                100% {
-                    transform: scale(1);
-                }
-            }
-
-            #celebration img {
-                animation: celebrate 0.5s ease-in-out infinite;
-            }
-        </style>
-        <title>Gæt et tilfældigt tal</title>
-    </head>
-
-    <body>
-
-        <h1>Gæt et tal mellem 1 og 100</h1>
-
-        <input type="number" id="guess" placeholder="Gæt et tal">
-        <button onclick="checkGuess()">Gæt!</button>
-
-        <div id="result"></div>
-
-        <div id="celebration">
-            <img src="fejre.gif" alt="Festlighed">
-        </div>
-
-        <script>
-            // Generer et tilfældigt tal mellem 1 og 100
-            const randomNumber = Math.floor(Math.random() * 100) + 1;
-
-            function checkGuess() {
-                // Hent brugerens gæt
-                const userGuess = parseInt(document.getElementById('guess').value);
-
-                // Tjek om gættet er korrekt
-                if (userGuess === randomNumber) {
-                    document.getElementById('result').innerHTML = 'Tillykke! Du har gættet rigtigt!';
-                    document.getElementById('celebration').style.display = 'block';
-                } else if (userGuess < randomNumber) {
-                    document.getElementById('result').innerHTML = 'Forkert! Tallet er for lavt.';
-                } else {
-                    document.getElementById('result').innerHTML = 'Forkert! Tallet er for højt.';
-                }
-            }
-        </script>
-
-    </body>
-
-    </html>
 </body>
 
 </html>
